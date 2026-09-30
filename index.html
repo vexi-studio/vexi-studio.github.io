@@ -76,23 +76,23 @@ dialog::backdrop{background:#000a}
 #page a{cursor:pointer;text-decoration:none;color:inherit}#page.pv a[data-link=""]{cursor:default}
 #page .btn{display:inline-block;padding:10px 20px;border-radius:6px;background:var(--brand);color:#fff;font-weight:600}
 #page .btn.o{background:transparent;border:2px solid var(--brand);color:var(--brand)}#page .btn.p{border-radius:99px}
-#page .btn.g{background:linear-gradient(135deg,var(--brand),#a855f7)}#page .btn.l{padding:16px 36px;font-size:18px}#page .btn.d{background:#222}
+#page .btn.g{background:linear-gradient(135deg,var(--brand),var(--brand2,#a855f7))}#page .btn.l{padding:16px 36px;font-size:18px}#page .btn.d{background:var(--dark,#222)}
 #page .btnrow{padding:24px;text-align:center;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 #page header,#page footer{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;gap:16px;flex-wrap:wrap}
 #page nav{display:flex;gap:18px;flex-wrap:wrap}.logo2{font-weight:800;font-size:20px;color:var(--brand)}
-.hc{flex-direction:column;text-align:center;justify-content:center!important}.hd{background:#15171c;color:#fff}.hd .logo2{color:#fff}
-.hg{background:linear-gradient(90deg,var(--brand),#a855f7);color:#fff}.hg .logo2{color:#fff}.hm{border-bottom:1px solid #ddd}
+.hc{flex-direction:column;text-align:center;justify-content:center!important}.hd{background:var(--dark,#15171c);color:#fff}.hd .logo2{color:#fff}
+.hg{background:linear-gradient(90deg,var(--brand),var(--brand2,#a855f7));color:#fff}.hg .logo2{color:#fff}.hm{border-bottom:1px solid #ddd}
 .ha{background:var(--brand);color:#fff;justify-content:center!important;font-size:13px;padding:8px}
-.fd{background:#15171c;color:#bbb}.fc{align-items:flex-start!important;background:#f3f4f6}.fc div{display:flex;flex-direction:column;gap:6px}.fc b{margin-bottom:4px}
+.fd{background:var(--dark,#15171c);color:#bbb}.fc{align-items:flex-start!important;background:#f3f4f6}.fc div{display:flex;flex-direction:column;gap:6px}.fc b{margin-bottom:4px}
 .fn{background:var(--brand);color:#fff;flex-direction:column;text-align:center;justify-content:center!important;padding:36px}.fn input{padding:9px;border-radius:6px;border:0;width:220px;color:#222;background:#fff}
 .fs{justify-content:center!important;flex-direction:column;background:#f3f4f6;text-align:center}
 .sc{padding:64px 28px;text-align:center}.sc h1{font-size:40px;margin:0 0 12px}.sc h2{margin:0 0 12px;font-size:30px}.sc p{color:#555;max-width:620px;margin:0 auto 18px}
-.hero{background:linear-gradient(135deg,var(--brand),#a855f7);color:#fff}.hero p{color:#eee}.hero .btn{background:#fff;color:#222;margin:4px}
+.hero{background:linear-gradient(135deg,var(--brand),var(--brand2,#a855f7));color:#fff}.hero p{color:#eee}.hero .btn{background:#fff;color:#222;margin:4px}
 .gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:24px}.cd{border:1px solid #ddd;border-radius:10px;padding:20px;background:#fff;text-align:left}
 .pr{border:2px solid #ddd}.pr.hot{border-color:var(--brand)}.pr big{font-size:32px;font-weight:800;display:block;margin:8px 0}
 .ph{height:150px;border-radius:8px;background:linear-gradient(135deg,#c7d2fe,#fbcfe8)}.ph:nth-child(2n){background:linear-gradient(135deg,#a7f3d0,#bae6fd)}
 .al{background:#f3f4f6}.ct input,.ct textarea{display:block;width:100%;max-width:420px;margin:8px auto;padding:10px;border:1px solid #ccc;border-radius:6px;background:#fff;color:#222}
-.bn{background:#15171c;color:#fff}.bn p{color:#ccc}
+.bn{background:var(--dark,#15171c);color:#fff}.bn p{color:#ccc}
 
 img.logo{width:auto;height:46px;background:none;border-radius:6px;object-fit:contain}
 #auth{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));overflow:auto;background:radial-gradient(circle at 50% 0,#14387a,#050d20 72%);font:14px/1.45 system-ui,Segoe UI,sans-serif}
@@ -425,7 +425,7 @@ g('tin').onclick=function(){setMode('in')};g('tup').onclick=function(){setMode('
 g('ago').onclick=go;g('ap').onkeydown=g('ae').onkeydown=function(ev){if(ev.key=='Enter')go()};
 g('bhelp').onclick=function(){location.href='mailto:'+SUPPORT+'?subject=Vexi%20Studio%20help'};
 g('bout').onclick=function(){st.del('vexi_session');g('ap').value='';setMode('in');view('va')};
-var S=st.get('vexi_session');if(S&&users()[S])enter();
+st.del('vexi_session'); /* always start on the sign-in page */
 })();
 </script><style>#fmt{position:fixed;z-index:40;display:none;gap:2px;padding:4px;background:#232427;border:1px solid var(--bd);border-radius:6px;box-shadow:0 6px 20px #000a}#fmt button{min-width:28px;height:28px;padding:0 6px;font-size:12px}</style><script>
 /* ===== Vexi upgrades ===== */
@@ -456,7 +456,7 @@ const tb=document.createElement('button');tb.className='sq';tb.innerHTML='<svg v
 /* autosave + restore */
 const _c=commit;commit=function(l){_c(l);try{localStorage.setItem('vexi_project',JSON.stringify(pages));localStorage.setItem('vexi_style',page.getAttribute('style')||'')}catch(e){}};
 try{const s=JSON.parse(localStorage.getItem('vexi_project')||'null');if(s&&s.some(p=>p.html&&p.html.includes('blk'))){pages=s;pi=0;pid=100;uid=1000;const st=localStorage.getItem('vexi_style');if(st){page.setAttribute('style',st);const m=st.match(/--brand:\s*(#[0-9a-f]{6})/i);if(m)$('brand').value=m[1]}page.innerHTML=pages[0].html;_c('Restore')}}catch(e){}
-function ask(){try{if(getComputedStyle($('auth')).display==='none'&&!page.querySelector('.blk')&&!sessionStorage.vt){sessionStorage.vt=1;td.showModal()}}catch(e){}}
+function ask(){try{if(getComputedStyle($('auth')).display==='none'&&!td.open)td.showModal()}catch(e){}}
 new MutationObserver(ask).observe($('auth'),{attributes:true});ask();
 /* text toolbar */
 const fm=document.createElement('div');fm.id='fmt';fm.innerHTML=[['bold','<b>B</b>'],['italic','<i>I</i>'],['underline','<u>U</u>'],['h1','H1'],['h2','H2'],['p','¶'],['left','⇤'],['center','↔'],['right','⇥'],['sm','A−'],['lg','A+'],['link','🔗']].map(([c,l])=>`<button data-c="${c}">${l}</button>`).join('');document.body.appendChild(fm);
@@ -551,4 +551,58 @@ const _rf2=refresh;refresh=function(){_rf2();const P=$('props'),t=resizeTarget()
  if(ph){$('szf').value=t.style.backgroundSize||'cover';$('szf').onchange=e=>{t.style.backgroundSize=e.target.value;commit('Image fit')};$('szu').onclick=()=>upf.click()}};
 placeRZ();
 
+</script><script>
+/* ===== Logo studio: magic-wand background remover, placement, auto colour match ===== */
+(function(){
+const dl=document.createElement('dialog');dl.id='lgdlg';
+dl.innerHTML=`<style>#lgdlg{width:min(720px,94vw)}#lgdlg label{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--mu)}#lgbox{position:relative;flex:1 1 300px;min-height:240px;border:1px solid var(--bd);border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:conic-gradient(#ccc 25%,#fff 0 50%,#ccc 0 75%,#fff 0) 0 0/16px 16px}#lgc{max-width:100%;max-height:320px;cursor:crosshair}#lgpal{display:flex;gap:6px}#lgpal button{width:28px;height:28px;padding:0;border:2px solid var(--bd)}#lgpal button.on{border-color:#fff;outline:2px solid var(--ac)}</style><b>Logo studio</b><div style="display:flex;gap:12px;flex-wrap:wrap;margin:10px 0"><div id="lgbox"><canvas id="lgc" width="1" height="1"></canvas><span id="lgh0" style="position:absolute;color:#555;pointer-events:none;text-align:center">Drop your logo here<br>or press Upload</span></div><div style="flex:1 1 220px;display:flex;flex-direction:column;gap:7px"><button id="lgup" class="on" style="height:32px">Upload logo…</button><button id="lgauto" style="height:30px">✨ Auto-remove background</button><label>Wand tolerance <input type="range" id="lgt" min="1" max="120" value="30"></label><label>Erase this colour everywhere <input type="checkbox" id="lgg"></label><span style="color:var(--mu)">Then click any part of the logo to erase it with the magic wand.</span><div style="display:flex;gap:6px"><button id="lgundo">Undo</button><button id="lgrst">Reset</button></div><hr style="width:100%;border-color:var(--bd)"><span style="color:var(--mu)">Logo colours — click one to make it the brand colour</span><div id="lgpal"></div><label>Match site colours to logo <input type="checkbox" id="lgm" checked></label><label>Logo height <input type="range" id="lgh" min="24" max="120" value="46"></label><label>Put in headers <input type="checkbox" id="lgH" checked></label><label>Put in footers <input type="checkbox" id="lgF" checked></label><label>Above selected section's title <input type="checkbox" id="lgS"></label></div></div><div style="display:flex;gap:6px"><button id="lgapply" class="on" style="height:32px">Place on site</button><button id="lgx" style="height:32px">Close</button></div>`;
+document.body.appendChild(dl);
+const q=i=>dl.querySelector('#'+i),cv=q('lgc'),cx=cv.getContext('2d',{willReadFrequently:true});
+let orig=null,st=[],pl=[],pk=0,url=null,curH=46;
+const hx=(r,g,b)=>'#'+[r,g,b].map(v=>Math.round(v).toString(16).padStart(2,'0')).join('');
+function hsl(r,g,b){r/=255;g/=255;b/=255;const M=Math.max(r,g,b),m=Math.min(r,g,b),l=(M+m)/2,d=M-m;let h=0,s=0;if(d){s=d/(1-Math.abs(2*l-1));h=M==r?((g-b)/d+6)%6:M==g?(b-r)/d+2:(r-g)/d+4;h*=60}return[h,s,l]}
+const fromHsl=(h,s,l)=>{const a=s*Math.min(l,1-l),f=n=>{const k=(n+h/30)%12;return 255*(l-a*Math.max(-1,Math.min(k-3,9-k,1)))};return hx(f(0),f(8),f(4))};
+/* magic wand: flood-fill from the clicked pixel, similar colours become transparent */
+function wand(x,y,glob,skip){const W=cv.width,H=cv.height,img=cx.getImageData(0,0,W,H),d=img.data;if(x<0||y<0||x>=W||y>=H)return;
+ if(!skip)st.push(cx.getImageData(0,0,W,H));
+ const o=(y*W+x)*4,r=d[o],g=d[o+1],b=d[o+2],th=+q('lgt').value*1.7,near=i=>d[i+3]>0&&Math.hypot(d[i]-r,d[i+1]-g,d[i+2]-b)<=th;
+ if(glob){for(let i=0;i<d.length;i+=4)if(near(i))d[i+3]=0}
+ else{const seen=new Uint8Array(W*H),s=[x,y];while(s.length){const yy=s.pop(),xx=s.pop();if(xx<0||yy<0||xx>=W||yy>=H)continue;const p=yy*W+xx;if(seen[p])continue;seen[p]=1;if(!near(p*4))continue;d[p*4+3]=0;s.push(xx+1,yy,xx-1,yy,xx,yy+1,xx,yy-1)}}
+ for(let yy=0;yy<H;yy++)for(let xx=0;xx<W;xx++){const i=(yy*W+xx)*4;if(d[i+3]!==255)continue;
+  if((xx&&d[i-1]===0)||(yy&&d[i-W*4+3]===0)||(xx<W-1&&d[i+7]===0)||(yy<H-1&&d[i+W*4+3]===0)){const t=Math.hypot(d[i]-r,d[i+1]-g,d[i+2]-b)/(th*2.2);if(t<1)d[i+3]=Math.max(40,t*255)}}
+ cx.putImageData(img,0,0);palette()}
+const auto=()=>{const W=cv.width,H=cv.height;[[0,0],[W-1,0],[0,H-1],[W-1,H-1]].forEach(([x,y],k)=>wand(x,y,false,k>0))};
+function palette(){const d=cx.getImageData(0,0,cv.width,cv.height).data,m={};
+ for(let i=0;i<d.length;i+=4){if(d[i+3]<200||d[i]>235&&d[i+1]>235&&d[i+2]>235)continue;const k=(d[i]>>4)+','+(d[i+1]>>4)+','+(d[i+2]>>4),o=m[k]||(m[k]={n:0,r:0,g:0,b:0});o.n++;o.r+=d[i];o.g+=d[i+1];o.b+=d[i+2]}
+ const a=Object.values(m).map(o=>{const c=[o.r/o.n,o.g/o.n,o.b/o.n];return{c,s:o.n*(.3+hsl(...c)[1])}}).sort((x,y)=>y.s-x.s);pl=[];
+ a.forEach(o=>{if(pl.length<5&&pl.every(p=>Math.hypot(p[0]-o.c[0],p[1]-o.c[1],p[2]-o.c[2])>70))pl.push(o.c)});drawPal()}
+function drawPal(){const P=q('lgpal');P.innerHTML='';pl.forEach((c,i)=>{const b=document.createElement('button');b.style.background=hx(...c);b.className=i===pk?'on':'';b.onclick=()=>{pk=i;drawPal()};P.append(b)})}
+function load(f){if(!f||!f.type.startsWith('image/'))return toast('Please choose an image file');const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,700/Math.max(im.width,im.height));cv.width=Math.round(im.width*k);cv.height=Math.round(im.height*k);cx.drawImage(im,0,0,cv.width,cv.height);orig=cx.getImageData(0,0,cv.width,cv.height);st=[];pk=0;q('lgh0').style.display='none';auto()};im.src=r.result};r.readAsDataURL(f)}
+function out(){if(!orig)return null;const W=cv.width,H=cv.height,d=cx.getImageData(0,0,W,H).data;let x0=W,y0=H,x1=-1,y1=-1;
+ for(let y=0;y<H;y++)for(let x=0;x<W;x++)if(d[(y*W+x)*4+3]>8){x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}
+ if(x1<x0)return null;const c=document.createElement('canvas');c.width=x1-x0+1;c.height=y1-y0+1;c.getContext('2d').drawImage(cv,x0,y0,c.width,c.height,0,0,c.width,c.height);return c.toDataURL('image/png')}
+/* match the whole site to the logo: brand, 2nd gradient colour, tinted dark tone */
+function theme(){if(!pl.length)return;const c=pl[Math.min(pk,pl.length-1)],[h,s,l]=hsl(...c),L=Math.min(l,.6),B=fromHsl(h,s,L),B2=pl.length>1?hx(...pl[(pk+1)%pl.length]):fromHsl((h+40)%360,s,L),P=page.style;
+ P.setProperty('--brand',B);P.setProperty('--brand2',B2);P.setProperty('--dark',fromHsl(h,Math.min(s,.35),.1));$('brand').value=B}
+const mk=h=>{const i=document.createElement('img');i.setAttribute('data-brandlogo','');i.alt='Logo';i.src=url;i.style.cssText='height:'+h+'px;width:auto;max-width:100%;object-fit:contain';return i};
+function bar(b){const k=b.dataset.kind;if(!url||!(k==='header'&&q('lgH').checked||k==='footer'&&q('lgF').checked)||b.querySelector('header.ha'))return;
+ const t=b.querySelector('img[data-brandlogo],.logo2,footer b'),i=mk(curH);t?t.replaceWith(i):b.firstElementChild.prepend(i)}
+function sec(b){b.querySelectorAll('img[data-brandlogo]').forEach(x=>x.remove());const h=b.querySelector('h1,h2'),w=document.createElement('div');w.style.margin='0 0 16px';w.append(mk(curH*2));h?h.before(w):b.firstElementChild.prepend(w)}
+function each(fn){blocks().forEach(fn);pages.forEach((p,k)=>{if(k===pi)return;const t=document.createElement('div');t.innerHTML=p.html;t.querySelectorAll(':scope>.blk').forEach(fn);p.html=t.innerHTML})}
+const save=()=>{try{localStorage.setItem('vexi_logo',JSON.stringify({url,pl,curH,pk}))}catch(_){}};
+try{const s=JSON.parse(localStorage.getItem('vexi_logo')||'null');if(s){url=s.url;pl=s.pl||[];curH=s.curH||46;pk=s.pk||0;q('lgh').value=curH}}catch(_){}
+q('lgapply').onclick=()=>{const u=out();if(!u)return toast('Upload a logo first');url=u;curH=+q('lgh').value;const m=q('lgm').checked;if(m)theme();
+ each(bar);if(q('lgS').checked&&selBlk&&selBlk.dataset.kind==='section')sec(selBlk);save();commit('Logo');dl.close();toast(m?'Logo placed — site colours matched to it':'Logo placed')};
+cv.onclick=e=>{if(!orig)return;const r=cv.getBoundingClientRect();wand(Math.floor((e.clientX-r.left)*cv.width/r.width),Math.floor((e.clientY-r.top)*cv.height/r.height),q('lgg').checked)};
+q('lgauto').onclick=()=>{if(!orig)return;cx.putImageData(orig,0,0);st=[];auto()};
+q('lgundo').onclick=()=>{const s=st.pop();if(s){cx.putImageData(s,0,0);palette()}};
+q('lgrst').onclick=()=>{if(orig){cx.putImageData(orig,0,0);st=[];palette()}};
+const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=()=>{load(f.files[0]);f.value=''};q('lgup').onclick=()=>f.click();
+q('lgbox').ondragover=e=>e.preventDefault();q('lgbox').ondrop=e=>{e.preventDefault();load(e.dataTransfer.files[0])};
+q('lgx').onclick=()=>dl.close();dl.onclick=e=>{if(e.target===dl)dl.close()};
+/* new headers/footers and templates pick the logo up automatically */
+const _ab=addBlock;addBlock=function(k,n,h){const d=_ab(k,n,h);bar(d);return d};
+const _at=applyTpl;applyTpl=function(t){_at(t);if(url){if(q('lgm').checked)theme();each(bar);commit('Logo')}};
+const lb=document.createElement('button');lb.className='sq';lb.title='Logo studio — remove background & match site to logo';lb.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 20L15 9"/><path d="M15 3v3M19 7h3M18 4l1.5 1.5M12 6l-1.5-1.5M17 12l1.5 1.5"/></svg><span>Logo</span>';lb.onclick=()=>dl.showModal();ub.after(lb);
+})();
 </script></body></html>
